@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* CSS Document */
+
+#banner {
+	position: absolute;
+	width: 100%;
+	height: 100px;
+	background-image: url(../images/banner_top.png);
+	z-index: 1;
+}
+
+#logo {
+	max-width:250px;
+	height:100px;
+	margin-left:10px;
+	float:left;
+	vertical-align:central;
+	text-align:center;
+	
+
+}
+.menu {
+	width: 100px;
+	height: 100px;
+	background-image:url(../images/menu.png);
+	background-position: center center;
+	background-size:50%;
+	background-repeat:no-repeat;
+	margin:0 0 0 10px;
+	float:left;
+}
+#page {
+	width: 100%;
+	height: 100%;
+
+}
+#content{
+	width: 100%;
+	height: 100%;
+	margin-left: 25px;
+
+}
+
+img {
+     height: auto;
+     max-width: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 10px;
+    font-size: 18px;
+}
+nav {
+    display: block;
+    float: left;
+    width: 100%;
+    margin-bottom: 30px;             
+}
+nav p{
+	font-color: #69C;
+}
+.nav ul{
+    margin: 0;
+    padding: 0;
+}
+.nav li{
+    position: relative;
+    float: left;
+    color: #FFF;
+    list-style: none;
+    background: #69C;
+}
+.nav li a {
+    display: block;        
+    padding: 15px 30px;
+    color: #FFF;
+    text-decoration: none;
+}
+ 
+.nav li:hover {
+    background: #6CF;
+}
+.nav li ul {
+    background-color: rgba(228, 238, 224, 1);
+    display: none;
+    position: absolute;
+    top: 100%;
+}
+.nav li:hover ul {
+    display: block;
+    right: 0;
+    left: 0;
+    top: 100%;
+}
+.arrow-bottom {
+    position: absolute;
+    top: 25px;
+    right: 13px;
+    margin-left: 5px;
+    border-top: 4px solid #FFF;
+    border-right: 4px solid transparent;    
+    border-left: 4px solid transparent;        
+    width: 1px;
+    height: 1px;
+}
+
+@media (max-width: 640px) { 
+
+.nav {
+        display: none;
+}
+
+.nav li{
+        float: none;
+}
+.nav li a{
+        padding: 10px 15px;
+}
+.nav li:hover ul {
+        position: relative;
+        display: block;
+        background: transparent;
+}
+.nav li:hover ul li{
+        background: transparent;
+}
+.nav li:hover ul li a{
+        padding-left: 30px;
+}
+.arrow-bottom {
+        top: 20px;
+}
+}
