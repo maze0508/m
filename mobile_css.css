@@ -1,6 +1,5 @@
 @charset "utf-8";
 /* CSS Document */
-
 #banner {
 	position: absolute;
 	width: 100%;
@@ -28,6 +27,8 @@
 	background-repeat:no-repeat;
 	margin:0 0 0 10px;
 	float:left;
+	display: none;
+	
 }
 #page {
 	width: 100%;
@@ -37,10 +38,14 @@
 #content{
 	width: 100%;
 	height: 100%;
-	margin-left: 25px;
+	margin-top:125px;
 
 }
+#content label{
+	font-color: #69c;
+	font-family:"微軟正黑體";
 
+}
 img {
      height: auto;
      max-width: 100%;
@@ -50,15 +55,13 @@ body {
     margin: 0;
     padding: 10px;
     font-size: 18px;
+	background-color:#F0F8FF;
 }
 nav {
     display: block;
     float: left;
     width: 100%;
     margin-bottom: 30px;             
-}
-nav p{
-	font-color: #69C;
 }
 .nav ul{
     margin: 0;
@@ -73,13 +76,13 @@ nav p{
 }
 .nav li a {
     display: block;        
-    padding: 15px 30px;
     color: #FFF;
     text-decoration: none;
+	 padding: 10px 15px;
 }
  
 .nav li:hover {
-    background: #6CF;
+    background: :#D0E8FF;
 }
 .nav li ul {
     background-color: rgba(228, 238, 224, 1);
@@ -92,6 +95,7 @@ nav p{
     right: 0;
     left: 0;
     top: 100%;
+	background:#D0E8FF;
 }
 .arrow-bottom {
     position: absolute;
@@ -106,29 +110,40 @@ nav p{
 }
 
 @media (max-width: 640px) { 
-
-.nav {
+    .nav {
         display: none;
-}
+    }
+    .menu {
+		width: 100px;
+		height: 100px;
+		background-image:url(../images/menu.png);
+		background-position: center center;
+		background-size:50%;
+		background-repeat:no-repeat;
+		margin:0 0 0 10px;
+		float:left;
+        display: inline-block;
 
-.nav li{
+    }
+    .nav li{
         float: none;
-}
-.nav li a{
+    }
+    .nav li a{
         padding: 10px 15px;
-}
-.nav li:hover ul {
+    }
+    .nav li:hover ul{
         position: relative;
         display: block;
+        background:#D0E8FF;
+		
+    }
+    .nav li:hover ul li{
         background: transparent;
-}
-.nav li:hover ul li{
-        background: transparent;
-}
-.nav li:hover ul li a{
+    }
+    .nav li:hover ul li a{
         padding-left: 30px;
-}
-.arrow-bottom {
+    }
+    .arrow-bottom {
         top: 20px;
-}
+    }
 }

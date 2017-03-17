@@ -18,8 +18,6 @@
 	background-image: url(../images/login1.jpg);
 	background-repeat: no-repeat;
 	display:table;
-
-
 }
 #login_form{
 	width: 100%;
