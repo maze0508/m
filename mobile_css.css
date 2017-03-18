@@ -27,7 +27,6 @@
 	background-repeat:no-repeat;
 	margin:0 0 0 10px;
 	float:left;
-	display: none;
 	
 }
 #page {
@@ -50,7 +49,9 @@ img {
      height: auto;
      max-width: 100%;
 }
-
+a {
+	text-decoration:none;
+}
 body {
     margin: 0;
     padding: 10px;

@@ -42,45 +42,39 @@ $(document).ready(function() {
 </div>
 <div id="page">
   <div id="content">
-			<img  style="width:450px; " src="../images/test/stu-mytheme.png"/>
+			<img  style="width:450px; " src="../images/test/stu-myfavorites.png"/>
 			<?php
-				$query = "select user_media.url,learning.learning_id,learning.learning_name,user_media.user_media_id,learning.learning_start,learning.learning_end,learning.learning_content,learning.edit_books_id,member.name,subject.subject_catalog,learning_team.team_id from (user_media inner join edit_books on user_media.user_media_id = edit_books.user_media_id) inner join learning on learning.edit_books_id = edit_books.edit_books_id inner join member on learning.member_id = member.member_id inner join subject on learning.subject_id = subject.subject_id inner join (learning_team right join team_member on learning_team.team_id = team_member.team_id) on learning.learning_id = learning_team.learning_id where team_member.member_id = '$member_id'";
+				$query = "SELECT user_media.url,user_media.title,user_media.description,member.name,user_media.member_id,subject.subject_catalog,my_favorite.date,edit_books.edit_books_id,edit_books.user_media_id FROM (my_favorite LEFT JOIN edit_books ON my_favorite.edit_books_id=edit_books.edit_books_id) LEFT JOIN user_media ON edit_books.user_media_id=user_media.user_media_id LEFT JOIN subject ON edit_books.subject_id=subject.subject_id LEFT JOIN member ON user_media.member_id=member.member_id WHERE my_favorite.member_id = $member_id ORDER BY my_favorite.date";
 				$result = $mysqli->query($query);
 				while($row = $result->fetch_array(MYSQL_ASSOC)){
-				   $learning_name = $row["learning_name"];
-				   $learning_id = $row["learning_id"];
 				   $user_media_id = $row["user_media_id"];
-				   
 					$_SESSION['user_media_id'] = $user_media_id;
-				   
-				   $learning_start = $row["learning_start"];				   
-				   $team_id = $row["team_id"];
-				   $learning_end = $row["learning_end"];
-				   $learning_content = $row["learning_content"];
+				   $title = $row["title"];
 				   $edit_books_id = $row["edit_books_id"];
-				   $name = $row["name"];				   
+				   $user_media_member_id = $row["member_id"];				   
 				   $subject_catalog = $row["subject_catalog"];	
-				   $url = $row["url"];
+				   $url = $row["url"];	
+				   $date = $row["date"];	
+				   $description = $row["description"];	
+				   $found = strstr($url,"youtube");		
+                    $name = $row["name"];
+					if($url){	 
 				   if(strstr($url,"youtube")){
 					$youtubeid = explode("=" , $url);
 					$aimgs = "<img src='http://img.youtube.com/vi/".$youtubeid[1]."/default.jpg' name='$url' align='top' />";
 					}else{			
 				   $aimgs = "<img class='imgs' src='../user_pics/$url.jpg' align='top' />";}
-				   	echo "<div style='width:100%;margin-left:15px;'>
-						<div style='width:100px;float:left;margin-top:15px;'>
-							$aimgs
-						</div>
-						<div style='width:100%;height:100px;margin-left:10px;'><br>
-							<ul>
-							<li style='list-style: none;'><label style='color:#69F;';>【 $subject_catalog 】 <a style='text-decoration: none;' href='../start_learning_1.php?user_media_id=$user_media_id&team_id=$team_id'>$learning_name</a></label></li>
-							<label style='font-size:12px;color:#49C;'>　期限：$learning_start ~ $learning_end</label>
-
-						</div></div><hr>";
-				}
+				 echo "<div style='width:100%;height:100px;margin-left:15px;'>
+				<div style='width:100px;float:left;margin-top:15px;'>
+						$aimgs
+				</div>
+				<div style='width:100%;height:100px;margin-left:10px;'><br/>
+					<label style='color:#69F;'>【 $subject_catalog 】 <a style='text-decoration: none;' href='../start_learning_1.php?user_media_id=$user_media_id&edit_books_id=$edit_books_id'>$title</a></label><br/>
+				<label style='font-size:12px;color:#49C;'>　主題作者：$name</label><br/>
+				<label style='font-size:12px;color:#49C;'>　收藏時間：$date</lable><br/></div></div><hr>";
+				}}
 				mysqli_free_result($result);
-				?>
-			
-
+				?>		
   </div>
 </div>
   

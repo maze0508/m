@@ -64,29 +64,21 @@ $(document).ready(function() {
 					$aimgs = "<img src='http://img.youtube.com/vi/".$youtubeid[1]."/default.jpg' name='$url' align='top' />";
 					}else{			
 				   $aimgs = "<img class='imgs' src='../user_pics/$url.jpg' align='top' />";}
-				 echo "<div style='width:100%;margin-left:15px;'>
-				<br/><label class='groupmember'>小組成員：</label>";
-				$query01 = "SELECT name FROM  team_member,member WHERE  team_member.member_id = member.member_id AND team_id = '$team_id'";
-				$result01 = $mysqli->query($query01);
-				while($row01 = $result01->fetch_array(MYSQL_ASSOC) ){
-				$group_member = $row01["name"];	 
-				echo"
-				<div class='single_line'>
-				<label id='line' >$group_member</label>
-				</div>
-				";
-				}
-				mysqli_free_result($result01);
-				echo"
+				 echo "<div style='width:100%;height:100px;margin-left:15px;'>
 				<div style='width:100px;float:left;margin-top:15px;'>
 						$aimgs
 				</div>
 				<div style='width:100%;height:100px;margin-left:10px;'><br>
-					<ul>
-					<li style='list-style: none;'><label>【 $subject_catalog 】 <a style='text-decoration: none;' href='../start_learning_1.php?user_media_id=$user_media_id&team_id=$team_id'>$learning_name</a></label></li></ul>
-					<label style='font-size:12px;'>　期限：$learning_start ~ $learning_end</label>
-
-						</div></div><hr>";
+					<label style='color:#69F;'>【 $subject_catalog 】 <a style='text-decoration: none;'href='../start_learning_1.php?user_media_id=$user_media_id&team_id=$team_id'>$learning_name</a></label><br/>
+				<label style='font-size:14px;color:#69C'>　小組成員：";
+				$query01 = "SELECT name FROM  team_member,member WHERE  team_member.member_id = member.member_id AND team_id = '$team_id'";
+				$result01 = $mysqli->query($query01);
+				while($row01 = $result01->fetch_array(MYSQL_ASSOC) ){
+				$group_member = $row01["name"];	 
+				echo"$group_member"." ";
+				}
+				mysqli_free_result($result01);
+				echo"　</label><br/><label style='font-size:12px;color:#49C;'>　期限：$learning_start ~ $learning_end</label></div></div><hr>";
 				}
 				mysqli_free_result($result);
 				?>

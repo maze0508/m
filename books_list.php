@@ -29,6 +29,7 @@ cursor:pointer;
 width:50%;
 float:left;
 margin-top:15px;
+border-bottom:1px solid #DEF;
 }
 .movie_title{
 	font-size: 15px;
@@ -59,24 +60,38 @@ margin-top:15px;
 	<div style="width:100%;overflow:auto;border:1px solid #DEF;">
     <ul>
 				<?php
-				$query = "SELECT user_media.user_media_id,user_media.url,user_media.title from user_media left join edit_books on user_media.user_media_id = edit_books.user_media_id where edit_books.member_id = '$member_id' ORDER BY user_media_id ";
+				$query = "select edit_books.edit_books_id,edit_books.books_target,edit_books.books_content,edit_books.books_concept,edit_books.slesson,user_media.user_media_id,user_media.url,user_media.title from edit_books inner join user_media on edit_books.user_media_id = user_media.user_media_id";
 				$result = $mysqli->query($query);
 				while($row = $result->fetch_array(MYSQL_ASSOC)){
 				   $user_media_id = $row["user_media_id"];
-				   $url = $row["url"];
-				   $title =  iconv_substr($row["title"], 0, 8, 'utf-8');
-				   $found = strstr($url,"youtube");
-                    shell_exec ("ffmpeg -i ../user_movie/$url.$media_type -ss 00:00:00 -vframes 1 -y user_pics/$user_media_id.jpg");
-				 if($found){
-                    $UrlArr = explode("=" , $url);
-				    $youtube_n = $UrlArr[1];
-					echo "<li style='list-style:none;'><div class='temp_movie'><a href='../my_books.php?user_media_id=$user_media_id'><div><img src='http://img.youtube.com/vi/$youtube_n/0.jpg' class='youtube' name='$url' style='width:196px;height:110px;'/></div></a><h3 class='movie_title'><a href='my_books.php?user_media_id=$user_media_id' style='text-decoration:none;color:#69C'>$title</a></h3></div></li>";
-				}else{
-					echo "<li style='list-style:none;'><div class='temp_movie'><a href='../my_books.php?user_media_id=$user_media_id' style='text-decoration:none;'><div><img src='../user_pics/$url.jpg' style='width:196px;height:110px;'/></div></a><h3 class='movie_title'><a href='my_books.php?user_media_id=$user_media_id' style='text-decoration:none;color:#69C'>$title</a></h3></div></li>";
+				   $url = $row["url"];				   
+				   //$title = iconv_substr($row["title"], 0, 10, 'utf-8');
+				   $title = $row["title"];
+				   $edit_books_id = $row["edit_books_id"];
+				   $books_target = $row["books_target"];
+				   $books_content = $row["books_content"];				   
+				   $books_concept = $row["books_concept"];
+				   $slesson = $row["slesson"];
+				    if(strstr($url,"youtube")){
+					$youtubeid = explode("=" , $url);
+					$aimgs = "<img src='http://img.youtube.com/vi/".$youtubeid[1]."/default.jpg' name='$url' align='top' / style='width:196px;height:110px;'>";
+					}else{			
+				   $aimgs = "<img class='imgs' src='../user_pics/$url.jpg' align='top' style='width:196px;height:110px;'/>";}
+					echo "
+					<li style='list-style:none;'>
+					<div class='temp_movie'>
+						<div style='width:196px;float:left;'>
+							$aimgs
+						</div>
+						<div style='float:left;width:100%;'>
+							<label class='movie_title'>片名：<a style='text-decoration: none;color:#69C' href='books_player.php?user_media_id=$user_media_id&edit_books_id=$edit_books_id'>$title</a></label><br/>
+							<label class='movie_title'>適用年級：$slesson</label><br>
+							<label class='movie_title'>學習目標：$books_target</label>
+						</div></div></li>";
+					
 				}
-                }
 				mysqli_free_result($result);
-				?>
+				?>	
 		</ul></div>
   </div>
 </div>
