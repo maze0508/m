@@ -57,6 +57,8 @@ border-bottom:1px solid #DEF;
 </div>
 <div id="page">
   <div id="content">
+  <img  style="width:20px;" src="../images/test/pic-Tit.png"/>
+<label style="color:#69F">教材資源</label>
 	<div style="width:100%;overflow:auto;border:1px solid #DEF;">
     <ul>
 				<?php

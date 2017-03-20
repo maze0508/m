@@ -9,14 +9,12 @@ echo "<script>document.location.href='index.php'</script>";
 <head>
 <meta http-equiv="content-type" content="text/html; charset=utf-8" />
 <title>Video Learning</title>
-
-<link rel="stylesheet" href="../../css/bootstrap.min.css"/>
-<link rel="stylesheet" href="../../css/jquery.jOrgChart.css"/>
-<link rel="stylesheet" href="../../css/custom.css"/>
-<link href="../../css/prettify.css" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="../css/jquery.jOrgChart.css"/>
+<link rel="stylesheet" href="../css/custom.css"/>
+<link href="../css/prettify.css" type="text/css" rel="stylesheet" />
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-<script type="text/javascript" src="../../js/prettify.js"></script>
-<script src="../../js/jquery.jOrgChart.js"></script>
+<script type="text/javascript" src="../js/prettify.js"></script>
+<script src="../js/jquery.jOrgChart.js"></script>
 <link href='mobile_css.css' rel='stylesheet' type='text/css' media='screen'/>
 
 
@@ -44,26 +42,25 @@ $(document).ready(function() {
 			include_once("php/banner_s.php");
 		 }
 ?>
-
 </div>
 <div id="page">
   <div id="content">
-	<div class="Tit"><img  style="width:20px;" src="../images/test/pic-Tit.png"/><label style="color:#69F">筆記本</label>
-    </div>
-	<div id='compos_book'>
-   	<?php
-		echo"<select id='compos_book_select' style=;width:100%;'> <option value='change'>請選擇章節</option>";
-		$query="SELECT   compos_book_id,compos_book_name FROM compos_book WHERE member_id ='$member_id'";
-		$result = $mysqli->query($query);
-		while ($row = $result->fetch_array(MYSQL_ASSOC)) {
-			$compos_book_id = $row['compos_book_id'];
-			$compos_book_name = $row['compos_book_name'];
-			echo '<option value="' . $compos_book_id . '">' . $compos_book_name . '</option>' . "\n";
-		}
-		echo"</select></div>";		
-				?>		
-                
-    <div id='show_book' style="width:100%">
+<img  style="width:20px;" src="../images/test/pic-Tit.png"/>
+<label style="color:#69F">筆記本</label>
+	<div id='compos_book' style="width:100%">
+		<?php
+            echo"<select id='compos_book_select' style='width:50%;'>
+				<option value='change'>請選擇章節</option>";
+            $query="SELECT   compos_book_id,compos_book_name FROM compos_book WHERE member_id ='$member_id'";
+            $result = $mysqli->query($query);
+            while ($row = $result->fetch_array(MYSQL_ASSOC)) {
+                $compos_book_id = $row['compos_book_id'];
+                $compos_book_name = $row['compos_book_name'];
+                echo '<option value="' . $compos_book_id . '">' . $compos_book_name . '</option>' . "\n";
+            }
+            echo"</select>";?>		
+    </div>         
+    <div id='show_book' style="width:100%;">
 	</div>
   </div>
 </div>
@@ -166,8 +163,7 @@ $(function(){
 		$("canvas#"+canvas_id).drawLine(obj);
 	}
 });
-
-
 </script>
+
 </body>
 </html>

@@ -12,9 +12,9 @@
         <li>
         	 <a href='#' title='影片管理'>影片管理</a>  
               <ul>
-                <li><a href='../my_media.php' title='草稿夾'>我的影片</a></li>
+
                 <li><a href='../upload_media.php' title='新增影片'>新增影片</a></li>
-                <li><a href='../emp_media.php' title='草稿夾'>影片草稿夾</a></li>
+                <li><a href='../emp_media.php' title='草稿夾'>影片草稿夾</a></li>                <li><a href='../my_media.php' title='草稿夾'>我的影片</a></li>
              </ul>  
         </li>
          <li>
@@ -25,6 +25,6 @@
             </ul>
         </li>
 		<li><a href='my_favorite.php'  title='我的收藏'>我的收藏</a></li>       
-		<li><a href='../../php/logout.php' title='登出'>登出</a></li>               
+		<li><a href='../php/logout.php' title='登出'>登出</a></li>               
     </ul>"
 	?>
