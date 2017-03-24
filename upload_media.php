@@ -23,6 +23,11 @@ $(document).ready(function() {
     });
     $(".nav > ul > li:has(ul) > a").append('<div class="arrow-bottom"></div>');
 });
+
+function fileclear(){
+  document.getElementById('file').innerHTML="<input name='fileField' type='file'>";
+}
+
 </script>
 <style type="text/css">
 
@@ -70,15 +75,20 @@ margin-bottom:15px;
 <div class="post">
 	<div class="media_uploadify">
     	<h2>上傳影片</h2>
-		<input type="file" name="uploadify" id="uploadify" /><br/>
+
+		<form name="fileuploadify" id="fileuploadify" enctype="multipart/form-data" method="post" action="php/uploadify.php">
+		  <div id="file">
+		  <input type="file" name="fileField" id="fileField" />
+		</div>
+		<br/>
         <p style="font-size:15px;">檔名請勿使用中文!<br/>僅接受 *.mp4、*.ogg、*.webm之檔案格式<br/></p>
-		<input type="button" onclick="javascript:$('#uploadify').uploadifyUpload();" value="開始上傳">
-		<input type="button" onclick="javascript:$('#uploadify').uploadifyClearQueue()" value="清空佇列">
+        <input type="hidden" name="member_id" value=<?php echo($_SESSION['member_id']); ?>>
+         <input type="submit" value="開始上傳" />
+         <input type="button" onclick="fileclear()" value="清空佇列">
+	    </form>
 	</div>
- 	<div id="fileQueue"></div>
-    <div id="filesUploaded"></div>
-   
- </div>
+   	</div>
+
   <br/><hr/>
 <!---上傳youtube-->
 <div class="post">
@@ -97,44 +107,5 @@ margin-bottom:15px;
 <!---END content-->  
   </div>
 </div>
-<script type="text/javascript" src="../js/jquery.uploadify.v2.1.0.min.js"></script>
-<script type="text/javascript">
-$(function(){  
-var member_id = "<?php print $_SESSION['member_id']; ?>";
-
-$("#uploadify").uploadify({
-		'buttonText'	 : 'Browser',
-		'uploader'       : 'swf/uploadify.swf',
-		'script'         : 'uploadify.php',
-		'cancelImg'      : './images/cancel.png',
-		'queueID'        : 'fileQueue',
-		'sizeLimit'		 : '8925684',	//8925684--8.8MB
-		'fileDesc'    	 : '影片檔',
-		'fileExt'  		 : '*.mp4;*.webm;*.ogg',
-		'scriptData'	 : {'member_id':member_id},    /*這行是可以帶value到後端，但會有亂碼，所以前面才要base64編碼*/
-		'auto'           : false,
-		'multi'          : true,
-		'queueSizeLimit' :'5',
-		'onSelect'       :function(e, queueId, fileObj){
-		if(fileObj.size > 8925684){
-		alert(fileObj.name+"檔案太大，限制為8mb");
-		$('#uploadify').fileUploadClearQueue(e);}
-		},
-		'onAllComplete'  :function(e, queueId, fileObj){
-			alert('上傳成功，請至草稿夾發佈');
-			window.location = 'php/uploadify.php';
-		}
-});
-    
-
-$("#download").click(function(){
-	//var test = /http:\/\/www.youtube.com/.test($('#beurl').val());
-	if($('#beurl').val()=="")
-		alert("格式錯誤");
-})
-
-})
-
-</script>
 </body>
 </html>
