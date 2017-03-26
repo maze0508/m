@@ -18,7 +18,7 @@ if (!empty($_FILES)) {
 	}
     if($media_type){
 	$image_name = $now.'.jpg';	
-    shell_exec("ffmpeg -i ../user_movie/$ext.$media_type -ss 0 -vframes 1 -y ../../images/anchor/$image_name");
+    shell_exec("ffmpeg -i ../../user_movie/$ext.$media_type -ss 0 -vframes 1 -y ../../images/anchor/$image_name");
     }
 	if(file_exists($targetFile)){
 		?><script>alert("檔案已經存在，請勿重覆上傳相同檔案");</script><?php

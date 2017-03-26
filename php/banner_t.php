@@ -14,7 +14,7 @@
               <ul>
 
                 <li><a href='../upload_media.php' title='新增影片'>新增影片</a></li>
-                <li><a href='../emp_media.php' title='草稿夾'>影片草稿夾</a></li>                <li><a href='../my_media.php' title='草稿夾'>我的影片</a></li>
+                <li><a href='../temp_media.php' title='草稿夾'>影片草稿夾</a></li>                <li><a href='../my_media.php' title='草稿夾'>我的影片</a></li>
              </ul>  
         </li>
          <li>
