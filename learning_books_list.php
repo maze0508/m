@@ -66,11 +66,11 @@ $(document).ready(function() {
 </div>
 
 <script type="text/javascript" src="js/jcanvas.js"></script>
-<script type="text/javascript" src="js/menu.js"></script>
 <script type="text/javascript">
 var member_id = "<?php print $_SESSION['member_id']; ?>";
 var compet = "<?php print $_SESSION['compet']; ?>";
 var user_media_id = "<?php print $user_media_id; ?>";
+
 $(function(){
 	$('#compos_book_select').live("change", function(){
 		var book_name=$('select#compos_book_select :selected').text();

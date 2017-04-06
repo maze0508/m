@@ -1,12 +1,18 @@
 <?php
 
-include_once("../../php/root2.php");
-$compos_book_id = mysql_escape_string($_POST['compos_book_id']);
-$member_id = mysql_escape_string($_POST['member_id']);
+$mysqli = new mysqli("120.110.114.90","maze","faIRhg5uLF","wbap2017");
+/* check connection */
+if (mysqli_connect_errno()) {
+    printf("Connect failed: %s\n", mysqli_connect_error());
+    exit();
+}
+mysqli_query($mysqli,"SET NAMES 'utf8'");
+$compos_book_id = $mysqli->real_escape_string($_POST['compos_book_id']);
+$member_id = $mysqli->real_escape_string($_POST['member_id']);
 
 $query="SELECT  composition_type FROM compos_book WHERE compos_book_id ='$compos_book_id'";
-$result = mysql_query($query);
-while($row = mysql_fetch_array($result)) {
+$result = $mysqli->query($query);
+while($row =$result->fetch_array(MYSQL_ASSOC)) {
 	$composition_type = $row['composition_type'];
 }?>	
 
@@ -21,8 +27,8 @@ switch($composition_type){
 		<div id='Edit' class='list' name='$compos_book_id' style='float:left;'>
 		<ul>";
 		$query="SELECT  media_image.image,media_anchor.anchor_descript,compos_list_id,compos_list.media_anchor_id,compos_list .media_image_id FROM compos_list LEFT JOIN media_anchor ON compos_list.media_anchor_id = media_anchor .media_anchor_id  LEFT JOIN media_image ON compos_list.media_image_id = media_image .media_image_id WHERE compos_book_id ='$compos_book_id'";
-		$result = mysql_query($query);
-		while($row = mysql_fetch_array($result)) {
+			$result = $mysqli->query($query);
+			while($row =$result->fetch_array(MYSQL_ASSOC)) {
 			$compos_list_id = $row['compos_list_id'];
 			$media_anchor_id = $row['media_anchor_id'];
 			$media_image_id = $row['media_image_id'];
@@ -58,8 +64,8 @@ switch($composition_type){
 				<ol>";
 		$query="SELECT  media_image.image,media_anchor.anchor_descript,compos_sequence_id,compos_sequence.media_anchor_id,compos_sequence .media_image_id FROM compos_sequence LEFT JOIN media_anchor ON compos_sequence.media_anchor_id = media_anchor .media_anchor_id  LEFT JOIN media_image ON compos_sequence.media_image_id = media_image .media_image_id WHERE compos_book_id ='$compos_book_id'";
 		
-		$result = mysql_query($query);
-		while($row = mysql_fetch_array($result)) {
+			$result = $mysqli->query($query);
+			while($row =$result->fetch_array(MYSQL_ASSOC)) {
 		//$result = $mysqli->query($query);
 		//while ($row = $result->fetch_array(MYSQL_ASSOC)) {
 			$compos_sequence_id = $row['compos_sequence_id'];
@@ -108,10 +114,8 @@ switch($composition_type){
 			}
 			$query="SELECT  media_image.image,media_anchor.anchor_descript,compos_hie_id,compos_hie.media_anchor_id,compos_hie.media_image_id FROM compos_hie LEFT JOIN media_anchor ON compos_hie.media_anchor_id = media_anchor .media_anchor_id  LEFT JOIN media_image ON compos_hie.media_image_id = media_image .media_image_id WHERE compos_book_id ='$compos_book_id' AND parent_id='$parent_id'";
 
-			//$result = $mysqli->query($query);
-			$result = mysql_query($query);
-			//while ($row = $result->fetch_array(MYSQL_ASSOC)) {
-			while($row = mysql_fetch_array($result,MYSQL_ASSOC)) { 	
+				$result = $mysqli->query($query);
+				while($row =$result->fetch_array(MYSQL_ASSOC)) {
 				//$compos_hie_id = "1";
 				$compos_hie_id = $row['compos_hie_id'];
 				$media_image_id = $row['media_image_id'];
@@ -159,8 +163,8 @@ switch($composition_type){
 	echo"
 		<div id='Edit' class='mesh' name='$compos_book_id' style='width:100%;float:left;'>";
 		$query="SELECT  media_image.image,media_anchor.anchor_descript,compos_mesh_id,x,y,compos_mesh.media_anchor_id,compos_mesh.media_image_id FROM compos_mesh LEFT JOIN media_anchor ON compos_mesh.media_anchor_id = media_anchor .media_anchor_id  LEFT JOIN media_image ON compos_mesh.media_image_id = media_image .media_image_id WHERE compos_book_id ='$compos_book_id' ORDER BY compos_mesh_id";
-		$result = mysql_query($query);
-		while($row = mysql_fetch_array($result,MYSQL_ASSOC)) { 
+			$result = $mysqli->query($query);
+			while($row =$result->fetch_array(MYSQL_ASSOC)) {
 			$compos_mesh_id = $row['compos_mesh_id'];
 			$media_image_id = $row['media_image_id'];
 			$image = $row['image'];
@@ -178,8 +182,8 @@ switch($composition_type){
 						<tr>
 							<td class='image'>
 								<div><img  class='del_new' style='width:14px;float:right;visibility:hidden; 'src='../images/cancel.png';></img>
-								<img  class='Select' style='width:14px;visibility:hidden; 'src='../images/test/pic-click.png';></img>
-								<img  class='handle' style='width:14px;visibility:hidden;'src='../images/test/pic-drag.png';></img></div>
+								<img  class='Select' style='width:14px;visibility:hidden; 'src='../../images/test/pic-click.png';></img>
+								<img  class='handle' style='width:14px;visibility:hidden;'src='../../images/test/pic-drag.png';></img></div>
 								<div id='image_$compos_mesh_id' class='image_choose' style='width:145px;height:109px;border:1px solid;'><img class='$image_url' style='width:145px;' src='$image_url'/></div>
 							</td>
 						</tr>
@@ -194,8 +198,8 @@ switch($composition_type){
 		
 		}
 		$query="SELECT  compos_meshline_id,point1,point2 FROM compos_meshline WHERE compos_book_id ='$compos_book_id' ORDER BY compos_meshline_id";
-		$result = mysql_query($query);
-		while($row = mysql_fetch_array($result,MYSQL_ASSOC)) { 
+			$result = $mysqli->query($query);
+			while($row =$result->fetch_array(MYSQL_ASSOC)) {
 			$compos_meshline_id = $row['compos_meshline_id'];
 			$point1 = $row['point1'];
 			$point2 = $row['point2'];

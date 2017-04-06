@@ -1,6 +1,5 @@
 <!--此為我的學習主題頁面-->
 <?php session_start();
-$member_id = $_SESSION['member_id'];
 if(!$_SESSION['account'])
 echo "<script>document.location.href='index.php'</script>";
 ?>
