@@ -10,7 +10,7 @@ echo "<script>document.location.href='index.php'</script>";
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <title>Video Learning</title>
 
-<link href="mobile_css.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="css/mobile_css.css" rel="stylesheet" type="text/css" media="screen"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript">

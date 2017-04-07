@@ -3,7 +3,8 @@
 include_once("../../php/root2.php");
 $member_id = $con->real_escape_string($_POST['member_id']);
 $user_media_id = $con->real_escape_string($_POST['user_media_id']);
-$page = $con->real_escape_string($_POST['page']);
+$team_id = $con->real_escape_string($_POST['team_id']);
+//$page = $con->real_escape_string($_POST['page']);
 
 
 $query="SELECT member.name, media_anchor_image.media_anchor_image_id, media_anchor_image.anchor_descript, media_anchor_image.noteColor, media_anchor_image.anchor_time, media_anchor_image.image
@@ -52,7 +53,7 @@ $query="SELECT member.name, media_anchor_image.media_anchor_image_id, media_anch
 					if($noteColor==0){
 						echo "<table id='$media_anchor_image_id' style='border-top:1px solid;cursor:pointer;color:#FFF'>
 								<tr>
-									<td style='width:90%;color:#69C'><div id='$anchor_time' class='antime $anchor_time' >[$m:$s] $name 說：<br> <img class='image' style='width:90%;' src='../images/anchor/$image'/><br> $anchor_descript</div></td>
+									<td style='width:90%;color:#69C'><div id='$anchor_time' class='antime $anchor_time' ><a style='text-decoration: none;' href='../m/start_learning_1.php?user_media_id=$user_media_id&team_id=$team_id&anchor_time=$anchor_time'>[$m:$s] $name 說：<br> <img class='image' style='width:90%;' src='../images/anchor/$image'/><br> $anchor_descript</a></div></td>
 									<td style='width:10%;'>
 										<div><img class='delete_button' style='width:16px;'src='../images/cancel.png';></img></div> 
 									</td>
@@ -64,24 +65,4 @@ $query="SELECT member.name, media_anchor_image.media_anchor_image_id, media_anch
 				}
 			}
 
-echo "<script type='text/jscript'>
-$('.delete_button').live('click',function(){
-if(member_id.length>=1){
-		var media_anchor_id=$(this).parents('table').attr('id');
-		$.post('/php/delete_anchor_text.php',{media_anchor_id:media_anchor_id,button:'delete'},function(data) {
-			var del_anchor='table#'+media_anchor_id;
-			action='刪除圖片註記';
-			record(member_id,action);
-			 $(del_anchor).remove();  
-		});
-}else
-	alert('請先登入');
-})
-
-function record(member_id,action){
-	$.post('/php/record.php',{member_id:member_id,action:action},function(data) {
-	});
-}
-
-</script>";
 		?>	

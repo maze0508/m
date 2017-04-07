@@ -15,7 +15,7 @@ echo "<script>document.location.href='index.php'</script>";
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 <script type="text/javascript" src="../js/prettify.js"></script>
 <script src="../js/jquery.jOrgChart.js"></script>
-<link href='mobile_css.css' rel='stylesheet' type='text/css' media='screen'/>
+<link href='css/mobile_css.css' rel='stylesheet' type='text/css' media='screen'/>
 
 
 <script type="text/javascript">

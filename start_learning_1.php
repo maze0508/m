@@ -10,7 +10,12 @@ echo "<script>document.location.href='index.php'</script>";
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <title>Video Learning</title>
 
-<link href="mobile_css.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="css/mobile_css.css" rel="stylesheet" type="text/css" media="screen"/>
+<link rel="stylesheet" type="text/css" href="css/component.css" />
+<link rel="stylesheet" type="text/css" href="css/jcarousel.ajax.css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+<script type="text/javascript" src="js/jcarousel.ajax.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -39,17 +44,15 @@ if(true) {
 //記錄註記時間
 function record(){
     Media =  document.video = document.getElementById("MovieShow");
-	$("#anchor_time").text(Math.floor(Media.currentTime));
+	$("#anchor_time").val(Math.floor(Media.currentTime));
 }
  </script>
  
 <style type="text/css">
-#eform{
+#note label{
 	color:#69C;	
 }
-#eform label{
-	color:#69F;	
-}
+
 </style>
 
 </head>
@@ -67,6 +70,7 @@ function record(){
 ?>
 
 </div>
+<!---主內容-->
 <div id="page">
   <div id="content">
   <img  style="width:20px;" src="../images/test/pic-Tit.png"/>
@@ -149,21 +153,77 @@ function record(){
 				    <?php
 						}
                     ?>   
-            </div>
-<!-- 播放器end / 留下註記start -->            
-    <span type="text" id="anchor_time">0</span>
-	<input type="text" id="anchor_descript"  size="50" maxlength="200" value=" 請將影片暫停在您欲註記的時間點.." />
-	<label id="anchor" class='ibutton' style='border-bottom:hidden;background-color:#F60'><a href="javascript:record();">留下註記</a></label>
+           </div>
+<!-- 播放器end / 留下註記start -->
+<div id="note"> 
+	<label>● 註記時間(秒)：</label>           
+    <input type="text" id="anchor_time" size="10" value=" 點擊紀錄按鈕.." />
+    <label><a href="javascript:record();" style='border-bottom: hidden; color: #DEF0FE; border-color: #69F; background-color: #9ADAFC;'>　紀錄　</a></label><br/><br/>
     
-          
-<!-- 留下註記end / 整理註記start -->
-     <div style="float:right;width:120px">
-		<a style='text-decoration: none;' href='group_study_note.php?user_media_id=<?php echo $user_media_id; ?>'><img src="../images/test/stu-cf3.png" /></a>
-    </div>
-<!-- 整理註記end -->   
+	<label>● 註記內容：</label>           
+	<textarea cols="10" id="anchor_descript" style="width:100%;height:100px">請輸入您欲註記的內容..</textarea>
+	<label id="anchor" class='ibutton' style='border-bottom: hidden; background-color: #5AB5EB;color:#FFF;'>　留下註記　</label>
 
+</div>          
+<!-- 留下註記end -->
+  </div>
+  <!--隱藏/顯示註記-->
+<div class="cbp-spmenu-push">
+<nav class="cbp-spmenu cbp-spmenu-horizontal cbp-spmenu-bottom" id="cbp-spmenu-s4">
+<!--水平滑動-->
+<div class="wrapper">
+ <div class="jcarousel-wrapper">
+ <!--註記內容start-->
+  <div class="jcarousel">
+  <ul>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+                                            <li><img src="file:///D|/Desktop/S__2547972.jpg" width="100%" height="100%" alt=""></li>
+   </ul>
+  </div>
+  <!--註記內容end-->
+  <a href="#" class="jcarousel-control-prev">＜</a>
+  <a href="#" class="jcarousel-control-next">＞</a>
   </div>
 </div>
+<!--水平滑動end-->
+
+</nav>
+<!--隱藏/顯示註記的按鈕start-->       
+<div class="container">
+	<div class="main">
+	<section>
+		<button id="showBottom" class="cbp-spmenu-bottom">顯示我的註記</button>
+	</section>
+	</div>
+</div>
+<!--隱藏/顯示註記的按鈕end-->       
+
+<script src="js/classie.js"></script>
+<script>
+	var menuBottom = document.getElementById( 'cbp-spmenu-s4' ),
+		showBottom = document.getElementById( 'showBottom' ),
+		body = document.body;
+
+		showBottom.onclick = function() {
+			classie.toggle( this, 'active' );
+			classie.toggle( showBottom, 'cbp-spmenu-open' );
+			classie.toggle( menuBottom, 'cbp-spmenu-open' );
+		};
+</script>
+</div>
+<!--隱藏/顯示註記end-->
+
+</div>
+<!---主內容end-->
  
 
         
@@ -171,12 +231,9 @@ function record(){
 var member_id = "<?php print $_SESSION['member_id']; ?>";
 $(document).ready(function(){  
 
-
-
-
 $("#anchor").click(function(){
 if(member_id.length>=1){
-$.post("php/insert_anchor_image_text.php",{member_id:member_id,user_media_id:user_media_id,url:url,anchor_descript:$("#anchor_descript").val(),anchor_time:$("#anchor_time").text(),privacy:"privacy"},function(data) {
+$.post("php/insert_anchor_image_text.php",{member_id:member_id,user_media_id:user_media_id,url:url,anchor_descript:$("#anchor_descript").val(),anchor_time:$("#anchor_time").val(),privacy:"privacy"},function(data) {
 action='新增圖文註記'+$("#anchor_descript").val();;
 record(member_id,action);
 alert('已留下註記!!'); $("#comment").html(data); $("#anchor_descript").val('')

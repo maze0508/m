@@ -10,7 +10,7 @@ echo "<script>document.location.href='index.php'</script>";
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <title>Video Learning</title>
 
-<link href="mobile_css.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="css/mobile_css.css" rel="stylesheet" type="text/css" media="screen"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script type="text/javascript">
@@ -71,7 +71,7 @@ $(document).ready(function() {
 						</div>
 						<div style='width:100%;height:100px;margin-left:10px;'><br>
 							<ul>
-							<li style='list-style: none;'><label style='color:#69F;';>【 $subject_catalog 】 <a style='text-decoration: none;' href='../start_learning_1.php?user_media_id=$user_media_id&team_id=$team_id'>$learning_name</a></label></li>
+							<li style='list-style: none;'><label style='color:#69F;';>【 $subject_catalog 】 <a style='text-decoration: none;' href='../m/start_learning_1.php?user_media_id=$user_media_id&team_id=$team_id'>$learning_name</a></label></li>
 							<label style='font-size:12px;color:#49C;'>　期限：$learning_start ~ $learning_end</label>
 
 						</div></div><hr>";

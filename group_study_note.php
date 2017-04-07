@@ -11,7 +11,7 @@ echo "<script>document.location.href='index.php'</script>";
 <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
 <title>Video Learning</title>
 
-<link href="mobile_css.css" rel="stylesheet" type="text/css" media="screen"/>
+<link href="css/mobile_css.css" rel="stylesheet" type="text/css" media="screen"/>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
 </script>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
@@ -58,6 +58,7 @@ $(document).ready(function() {
             while ($row = $result->fetch_array(MYSQL_ASSOC)) {
                 $learning_name = $row['learning_name'];
 				$user_media_id = $row['user_media_id'];
+				$team_id = $row['team_id'];
                 echo '<option value="' . $user_media_id . '">' . $learning_name . '</option>' . "\n";
             }
             echo"</select>";?>		
@@ -80,15 +81,34 @@ $(document).ready(function() {
 
 <script type="text/javascript">
 var member_id = "<?php print $_SESSION['member_id']; ?>";
+var team_id =  "<?php print $team_id; ?>";
 //var page =  "<?php print $page; ?>";
 $(function(){
 	$('select').live("change", function(){
 		var user_media_id = $(this).val();
- 		$.post("php/learning_article_show.php",{member_id:member_id,user_media_id:user_media_id},function(data){$('#show_learning_article').html(data);});
+ 		$.post("php/learning_article_show.php",{member_id:member_id,user_media_id:user_media_id,team_id:team_id},function(data){$('#show_learning_article').html(data);});
 	 });
 });
+</script>
 
+<script type='text/jscript'>
+$('.delete_button').live('click',function(){
+if(member_id.length>=1){
+		var media_anchor_id=$(this).parents('table').attr('id');
+		$.post('../php/delete_anchor_text.php',{media_anchor_id:media_anchor_id,button:'delete'},function(data) {
+			var del_anchor='table#'+media_anchor_id;
+			action='刪除圖片註記';
+			record(member_id,action);
+			 $(del_anchor).remove();  
+		});
+}else
+	alert('請先登入');
+})
 
+function record(member_id,action){
+	$.post('../php/record.php',{member_id:member_id,action:action},function(data) {
+	});
+}
 </script>
 </body>
 </html>
