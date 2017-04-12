@@ -75,7 +75,7 @@ a {
 .cbp-spmenu a {
 	display: block;
 	color: #fff;
-	font-size: 1.1em;
+	font-size: 0.1em;
 	font-weight: 300;
 }
 
@@ -101,8 +101,6 @@ a {
 
 .cbp-spmenu-horizontal a {
 	float: left;
-	width: 23px;
-	padding: 0.8em;
 	border-left: 1px solid #258ecd;
 }
 
