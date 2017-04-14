@@ -94,9 +94,10 @@ $(function(){
 <script type='text/jscript'>
 $('.delete_button').live('click',function(){
 if(member_id.length>=1){
-		var media_anchor_id=$(this).parents('table').attr('id');
-		$.post('../php/delete_anchor_text.php',{media_anchor_id:media_anchor_id,button:'delete'},function(data) {
-			var del_anchor='table#'+media_anchor_id;
+		var media_anchor_image_id=$(this).parents('table').attr('id');
+		$.post("../php/delete_anchor_text.php",{media_anchor_image_id:media_anchor_image_id,button:'delete'},function(data) {
+			var del_anchor="'table #"+media_anchor_image_id+"'";
+			alert('已刪除註記');
 			action='刪除圖片註記';
 			record(member_id,action);
 			 $(del_anchor).remove();  
