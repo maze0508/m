@@ -61,9 +61,12 @@ margin-bottom:15px;
 <img src="../images/logo1.png" id="logo"/>
 <?php 
         include_once("../php/root.php");
-        if($_SESSION['account']){
+        if($_SESSION['account'] && $_SESSION['compet']==2){
 			 include_once("php/banner_t.php");
+		}else  if($_SESSION['account'] && $_SESSION['compet']==3){
+			 include_once("php/banner_a.php");
 		}
+
 ?>
 
 </div>

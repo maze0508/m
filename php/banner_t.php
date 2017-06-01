@@ -18,7 +18,7 @@
              </ul>  
         </li>
          <li>
-            <a href='#'  title='教材管理'>學生管理</a>
+            <a href='#'  title='學生管理'>學生管理</a>
             <ul>
                 <li><a href='../team.php' title='學習主題'>學習主題</a></li>
                 <li><a href='../my_learning_list.php' title='課堂分組'>課堂分組</a></li>

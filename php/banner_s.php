@@ -1,7 +1,6 @@
 <?php 
 
-        echo "<link href='mobile_css.css' rel='stylesheet' type='text/css'/>
-<nav class='nav'><ul><li id='ald' style='height:50px;'><h3>".$_SESSION['user_name']." 同學</h3></li>
+        echo "<nav class='nav'><ul><li id='ald' style='height:50px;'><h3>".$_SESSION['user_name']." 同學</h3></li>
         <li>
             <a href='group_study.php' accesskey='2' title='學習主題'>學習主題</a>
         </li>

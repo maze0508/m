@@ -706,6 +706,7 @@
                     "ATTR": new RegExp( "^" + attributes ),
                     "PSEUDO": new RegExp( "^" + pseudos ),
                     "CHILD": new RegExp( "^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\(" + whitespace +
+
                     "*(even|odd|(([+-]|)(\\d*)n|)" + whitespace + "*(?:([+-]|)" + whitespace +
                     "*(\\d+)|))" + whitespace + "*\\)|)", "i" ),
                     "bool": new RegExp( "^(?:" + booleans + ")$", "i" ),
@@ -9921,6 +9922,7 @@
         if ( parsed ) {
             return [ context.createElement( parsed[1] ) ];
         }
+
 
         parsed = jQuery.buildFragment( [ data ], context, scripts );
 
